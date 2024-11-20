@@ -1,0 +1,8 @@
+/* Styles for Table component */
+.Table {
+    /* Add your styles here */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}

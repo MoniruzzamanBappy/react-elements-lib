@@ -1,0 +1,72 @@
+/* Accordion container */
+.accordion {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Accordion item */
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Accordion header */
+.accordion-header {
+  width: 100%;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #f1f1f1;
+}
+
+/* Accordion icon */
+.accordion-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease; /* Smooth rotation */
+}
+
+.accordion-icon.rotate {
+  transform: rotate(180deg); /* Rotate when open */
+}
+
+/* Accordion content */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #fff;
+  color: #555;
+  padding: 0 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: left;
+  display: block;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+/* Open state styles */
+.accordion-content.open {
+  max-height: 200px; /* Adjust based on content size */
+  padding: 15px 20px;
+}
+
+.accordion-header.open {
+  background-color: #e6e6e6;
+}

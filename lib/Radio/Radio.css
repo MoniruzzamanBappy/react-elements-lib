@@ -1,0 +1,72 @@
+/* Radio group container */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Radio label */
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Radio input (hidden) */
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Custom radio appearance */
+.radio-custom {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #007bff;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.radio-input:checked + .radio-custom {
+  background-color: #007bff; /* Fills the circle with blue */
+  border-color: #007bff; /* Ensures the border matches the background */
+}
+
+.radio-input:checked + .radio-custom::after {
+  content: "";
+  width: 8px; /* Size of the inner circle */
+  height: 8px;
+  background-color: #fff; /* White inner circle */
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Disabled styles */
+.radio-disabled {
+  cursor: not-allowed;
+  color: #999;
+}
+
+.radio-group-disabled .radio-label {
+  cursor: not-allowed;
+  color: #999;
+}
+
+.radio-group-disabled .radio-custom {
+  border-color: #ccc;
+  background-color: #f1f1f1;
+}
+
+.radio-input:checked.radio-group-disabled + .radio-custom {
+  background-color: #ccc;
+}
