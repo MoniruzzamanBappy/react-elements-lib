@@ -14,11 +14,11 @@ const Radio = ({ options, name, selectedValue, onChange, disabled }) => {
             name={name}
             value={option.value}
             checked={selectedValue === option.value}
-            onChange={(e) => !disabled && onChange(e.target.value)}
+            onChange={() => !disabled && onChange(option.value)}
             disabled={disabled}
             className="radio-input"
           />
-          <span className="radio-custom"></span>
+          <span className="radio-custom" />
           {option.label}
         </label>
       ))}
@@ -32,15 +32,14 @@ Radio.propTypes = {
       label: PropTypes.string.isRequired,
       value: PropTypes.any.isRequired,
     })
-  ).isRequired, // Array of options with label and value
-  name: PropTypes.string.isRequired, // Name for the radio group
-  selectedValue: PropTypes.any, // Currently selected value
-  onChange: PropTypes.func.isRequired, // Callback for selection change
-  disabled: PropTypes.bool, // Disable the radio group
+  ).isRequired,
+  name: PropTypes.string.isRequired,
+  selectedValue: PropTypes.any.isRequired, // Ensures the correct option is selected
+  onChange: PropTypes.func.isRequired, // Handles changes in selection
+  disabled: PropTypes.bool, // Disables the entire radio group
 };
 
 Radio.defaultProps = {
-  selectedValue: null,
   disabled: false,
 };
 

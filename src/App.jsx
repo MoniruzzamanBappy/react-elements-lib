@@ -3,11 +3,14 @@ import {
   Accordion,
   Alert,
   Avatar,
+  Badge,
   Button,
   Card,
   Checkbox,
   Dropdown,
+  Input,
   Radio,
+  Slider,
 } from "../lib/main";
 import "./App.css";
 
@@ -24,6 +27,11 @@ function App() {
     { title: "Section 2", content: "This is the content for section 2." },
     { title: "Section 3", content: "This is the content for section 3." },
   ];
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [number, setNumber] = useState("");
+  const [singleValue, setSingleValue] = useState(50);
+  const [multiValue, setMultiValue] = useState([20, 80]);
 
   const options = [
     { label: "Option 1", value: 1 },
@@ -46,6 +54,7 @@ function App() {
   return (
     <div className="!flex !flex-col !gap-6 py-12">
       <h1>Count: {count}</h1>
+      {/* button component */}
       <div className="flex gap-6 flex-wrap">
         <Button
           label="Primary"
@@ -79,9 +88,11 @@ function App() {
         <Button label="Outline Dark" variant="outline-dark" />
         <Button label="Outline Link" variant="outline-link" />
       </div>
+      {/* Accordion Component */}
       <div>
         <Accordion items={accordionItems} allowMultipleOpen={true} />
       </div>
+      {/* Alert Component */}
       <div style={{ padding: "20px" }}>
         {showAlert && (
           <Alert
@@ -94,6 +105,7 @@ function App() {
         <Alert type="warning" message="This is a warning alert!" />
         <Alert type="info" message="This is an info alert!" />
       </div>
+      {/* Avatar Component */}
       <div>
         <div style={{ padding: "20px", display: "flex", gap: "10px" }}>
           {/* Avatar with an image */}
@@ -114,6 +126,7 @@ function App() {
           <Avatar fallbackText="XY" size="xl" shape="circle" />
         </div>
       </div>
+      {/* Card Component */}
       <div>
         <div
           style={{
@@ -146,27 +159,70 @@ function App() {
           </Card>
         </div>
       </div>
-      <div></div>
-      <div>
-        <div style={{ padding: "20px" }}>
-          {/* Default Checkbox */}
-          <Checkbox
-            id="default-checkbox"
-            label="Default Checkbox"
-            checked={checked}
-            onChange={(isChecked) => setChecked(isChecked)}
-          />
+      {/* Badge Component */}
+      <div
+        style={{
+          padding: "20px",
+          display: "flex",
+          gap: "10px",
+          flexWrap: "wrap",
+        }}
+      >
+        {/* Badge with predefined success icon */}
+        <Badge text="Success" type="success" size="lg" isShowIcon />
 
-          {/* Disabled Checkbox */}
-          <Checkbox
-            id="disabled-checkbox"
-            label="Disabled Checkbox"
-            checked={false}
-            onChange={() => {}}
-            disabled
-          />
-        </div>
+        {/* Badge with predefined error icon */}
+        <Badge text="Error" type="error" size="md" />
+
+        {/* Badge with predefined warning icon */}
+        <Badge text="Warning" type="warning" size="sm" />
+
+        {/* Badge with predefined info icon */}
+        <Badge text="Info" type="info" size="md" />
+
+        {/* Badge without an icon */}
+        <Badge text="Primary" type="primary" size="md" />
+
+        {/* Badge with light and dark themes */}
+        <Badge text="Light" type="light" size="lg" />
+        <Badge text="Dark" type="dark" size="lg" />
       </div>
+      {/* Checkbox Components */}
+      <div style={{ padding: "20px" }}>
+        {/* Medium Checkbox */}
+        <Checkbox
+          checked={checked}
+          label="Accept Terms and Conditions"
+          onChange={(e) => setChecked(e.target.checked)}
+          size="md"
+        />
+
+        {/* Small Checkbox */}
+        <Checkbox
+          checked={checked}
+          label="Small Checkbox"
+          onChange={(e) => setChecked(e.target.checked)}
+          size="sm"
+        />
+
+        {/* Large Checkbox */}
+        <Checkbox
+          checked={checked}
+          label="Large Checkbox"
+          onChange={(e) => setChecked(e.target.checked)}
+          size="lg"
+        />
+
+        {/* Disabled Checkbox */}
+        <Checkbox
+          checked={true}
+          label="Disabled Checkbox"
+          onChange={() => {}}
+          size="md"
+          disabled
+        />
+      </div>
+      {/* Dropdown Component */}
       <div>
         <div style={{ padding: "20px" }}>
           {/* Basic Dropdown */}
@@ -185,6 +241,7 @@ function App() {
           />
         </div>
       </div>
+      {/* Radio Component */}
       <div>
         <h3>Radio Group</h3>
         <Radio
@@ -204,8 +261,80 @@ function App() {
           disabled
         />
       </div>
-      <div></div>
-      <div></div>
+      {/* input component */}
+      <div>
+        <Input
+          type="email"
+          label="Email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={setEmail}
+          required
+        />
+
+        <Input
+          type="password"
+          label="Password"
+          placeholder="Enter your password"
+          value={password}
+          onChange={setPassword}
+          required
+        />
+
+        <Input
+          type="number"
+          label="Age"
+          placeholder="Enter your age"
+          value={number}
+          onChange={setNumber}
+          min={18}
+          max={60}
+          required
+        />
+        <Input
+          disabled
+          type="number"
+          label="Age"
+          placeholder="Enter your age"
+          value={number}
+          onChange={setNumber}
+          min={18}
+          max={60}
+          required
+        />
+      </div>
+      {/* slider */}
+      <div>
+        <div style={{ padding: "20px", maxWidth: "500px" }}>
+          <h2>Single Slider</h2>
+          <Slider
+            min={0}
+            max={100}
+            initialValue={singleValue}
+            onChange={setSingleValue}
+          />
+          <p>Selected Value: {singleValue}</p>
+
+          <h2>Multi Slider</h2>
+          <Slider
+            min={0}
+            max={100}
+            initialValue={multiValue}
+            type="multi"
+            onChange={setMultiValue}
+          />
+          <p>
+            Selected Range: {multiValue[0]} - {multiValue[1]}
+          </p>
+
+          <Slider
+            min={0}
+            max={100}
+            initialValue={multiValue}
+            onChange={setMultiValue}
+          />
+        </div>
+      </div>
       <div></div>
       <div></div>
     </div>

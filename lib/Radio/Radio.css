@@ -5,15 +5,26 @@
   gap: 10px;
 }
 
+/* Disabled group styles */
+.radio-group-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 /* Radio label */
 .radio-label {
   display: flex;
   align-items: center;
   gap: 10px;
+  cursor: pointer;
   font-size: 14px;
   color: #333;
-  cursor: pointer;
-  position: relative;
+}
+
+/* Disabled label styles */
+.radio-disabled {
+  color: #999;
+  cursor: not-allowed;
 }
 
 /* Radio input (hidden) */
@@ -29,44 +40,26 @@
   height: 16px;
   border: 2px solid #007bff;
   border-radius: 50%;
-  display: inline-block;
+  background-color: transparent;
   position: relative;
-  transition: all 0.3s ease;
+  display: inline-block;
+  transition: all 0.2s ease;
 }
 
 .radio-input:checked + .radio-custom {
-  background-color: #007bff; /* Fills the circle with blue */
-  border-color: #007bff; /* Ensures the border matches the background */
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .radio-input:checked + .radio-custom::after {
   content: "";
-  width: 8px; /* Size of the inner circle */
+  width: 8px;
   height: 8px;
-  background-color: #fff; /* White inner circle */
+  background-color: #64c591;
   border-radius: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-/* Disabled styles */
-.radio-disabled {
-  cursor: not-allowed;
-  color: #999;
-}
-
-.radio-group-disabled .radio-label {
-  cursor: not-allowed;
-  color: #999;
-}
-
-.radio-group-disabled .radio-custom {
-  border-color: #ccc;
-  background-color: #f1f1f1;
-}
-
-.radio-input:checked.radio-group-disabled + .radio-custom {
-  background-color: #ccc;
+  transition: all 0.2s ease;
 }

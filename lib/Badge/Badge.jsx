@@ -1,40 +1,52 @@
 import PropTypes from "prop-types";
+import { FiCheckCircle, FiInfo, FiXCircle } from "react-icons/fi";
+import { TiWarning } from "react-icons/ti";
 import "./Badge.css";
 
-const Badge = ({ content, position, color, size, children }) => {
+const Badge = ({ text, type, size, isShowIcon }) => {
+  const getPredefinedIcon = () => {
+    switch (type) {
+      case "success":
+        return <FiCheckCircle className="badge-icon" />;
+      case "error":
+        return <FiXCircle className="badge-icon" />;
+      case "warning":
+        return <TiWarning className="badge-icon" />;
+      case "info":
+        return <FiInfo className="badge-icon" />;
+      default:
+        return null; // No icon for other variants
+    }
+  };
+
   return (
-    <div className="badge-container">
-      {children}
-      <span className={`badge badge-${color} badge-${size} badge-${position}`}>
-        {content}
-      </span>
-    </div>
+    <span className={`badge badge-${type} badge-${size} `}>
+      {isShowIcon && getPredefinedIcon()}
+      {text}
+    </span>
   );
 };
 
 Badge.propTypes = {
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired, // Content inside the badge
-  position: PropTypes.oneOf([
-    "top-right",
-    "top-left",
-    "bottom-right",
-    "bottom-left",
-  ]), // Position of the badge
-  color: PropTypes.oneOf([
+  text: PropTypes.string.isRequired, // The text inside the badge
+  type: PropTypes.oneOf([
     "primary",
     "secondary",
     "success",
-    "warning",
     "error",
+    "warning",
+    "info",
+    "light",
+    "dark",
   ]),
   size: PropTypes.oneOf(["sm", "md", "lg"]),
-  children: PropTypes.node, // Element to attach the badge to
+  isShowIcon: PropTypes.bool,
 };
 
 Badge.defaultProps = {
-  position: "top-right",
-  color: "primary",
+  type: "primary",
   size: "md",
+  isShowIcon: true,
 };
 
 export default Badge;
